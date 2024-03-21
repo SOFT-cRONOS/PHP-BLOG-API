@@ -36,6 +36,12 @@ CREATE TABLE autor (
 )
 ;
 
+CREATE TABLE users (
+    id_user INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(30) NOT NULL,
+    password VARCHAR(255) NOT NULL
+)
+
 CREATE TABLE categorias(
     id_categoria INT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nombre varchar(30) NOT NULL,

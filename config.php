@@ -16,7 +16,7 @@ define('DBNAME','paecblog');
 function openConex(){
     $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
     if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
+        return 'error';
 	}
     $conn->set_charset("utf8mb4");
 	
