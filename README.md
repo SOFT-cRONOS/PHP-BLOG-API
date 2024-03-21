@@ -4,6 +4,12 @@
 The Blog Content Management System (SOLAR) is a program written in PHP using the RESTful API format. It is designed to handle CRUD operations and manage the content of websites, blogs, news, and more.
 ### Features:
 * Public post with title, HTML content, sinop, tags, author and date.
+
+### In progress.
+
+* Login with tokens
+* Password hashing in MySQL
+* Security on private links
 --------------------------------------------------------------------------------------------------------------
 ## Español
 ### El programa SOLAR:
@@ -11,3 +17,9 @@ El Sistema Online para la Administración de Redacciones (SOLAR) es un programa 
 
 ### Funciones:
 * Publicar escritos con Titulo, contenido HTML, sinopsis, etiquetas, autor y fecha de publicacion.
+
+
+### En progreso.
+* Login con tokens
+* hash de password en mysql
+* seguridad en enlaces privados
