@@ -8,10 +8,10 @@ error_reporting(E_ALL);
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 
-define('DBUSER','paecadmin');
-define('DBPWD','7cronos1');
-define('DBHOST','172.17.0.2');
-define('DBNAME','paecblog');
+define('DBUSER','bdname');
+define('DBPWD','bdpassword');
+define('DBHOST','localhost');
+define('DBNAME','bduser');
 
 function openConex(){
     $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
