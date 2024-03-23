@@ -30,7 +30,7 @@ El Sistema Online para la Administración de Redacciones (SOLAR) es un programa 
     │   ├── tagsClass.php
     │   └── postClass.php
     │   
-    └── endpoints/
+    └── routes/
         ├── user.php
         └── product.php
 
@@ -68,14 +68,14 @@ Instalar mysqli
 
     respuesta: 
     
-[
-  {
-    "id": 0,
-    "title": "",
-    "sinopsis": "",
-    "date": "",
-    "image_url": "http://...",
-    "nick": "",
-    "categoria": ""
-  },
-]
+        [
+          {
+            "id": 0,
+            "title": "",
+            "sinopsis": "",
+            "date": "",
+            "image_url": "http://...",
+            "nick": "",
+            "categoria": ""
+          },
+        ]
