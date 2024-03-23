@@ -2,3 +2,4 @@
 config.php
 ./config.php
 .env
+config/conection.php

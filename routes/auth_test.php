@@ -1,10 +1,10 @@
 <?php
 // Funciones conexion
-require_once 'config.php';
+require_once './config/conection.php';
 //funciones jwt
-require_once 'auth.php';
+require_once './config/auth.php';
 //modulos vendor
-require_once 'vendor/autoload.php';
+require_once './vendor/autoload.php';
 
 if ($_SERVER['REQUEST_METHOD'] === "GET" || $_SERVER['REQUEST_METHOD'] === "POST") {
     $data = array();
@@ -17,11 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET" || $_SERVER['REQUEST_METHOD'] === "POST
         // leer header user y token $_SERVER['user']
         $headers = getallheaders();
         
-        if (authToken($headers)) {
-            echo httpMessage(200, 'autorizado');
-        } else {
-            echo httpMessage(401);
-        }
+        authToken('user', $headers);
 
     }
 } 

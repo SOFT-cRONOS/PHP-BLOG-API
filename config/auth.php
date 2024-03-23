@@ -1,15 +1,34 @@
 <?php
+$dir = dirname(__DIR__);
+
 // Funciones conexion
-require_once 'config.php';
+require_once 'conection.php';
 
 //modulos vendor
-require_once 'vendor/autoload.php';
+require_once $dir.'/vendor/autoload.php';
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+
+
+// Función para limpiar datos de entrada
+function sanitizeInput($entry) {
+    return htmlspecialchars(strip_tags($entry));
+    //htmlspecialchars elimina caracteres html
+    //strip_tags elimina caracteres php
+}
+
+function userPermision($headers) {
+    if (authToken($headers)){
+        return true;
+    } else {
+        echo httpMessage(401);
+        exit;
+    }
+}
 
 function getToken($data) {
     $now = strtotime("now");
@@ -25,21 +44,39 @@ function getToken($data) {
     return $jwt;
 }
 
-function authToken($headers) {
-    if (isset( $headers['user']) || isset($headers['token'])) {
-        $user= $headers['user'];
+function authToken($rank, $headers) {
+    //rank son los permisos q va a tener. visit, usuario, admin,
+    if (isset( $headers['user']) && isset($headers['token'])) {
+        $_userObj = new User();
+
+        $username= $headers['user'];
         $token = $headers['token'];
+        $result = $_userObj->getUserByUname($username);
         
-        $mask = unMask($token);
-        $id_user = $mask['data'];
-        $storedUser = 'cronos'; //nombre de usuario traido con el id
-        if ($id_user === '1' && $storedUser === $user) {
-            return true;
+        // Verificar si se encontró algún registro
+        if ($result->num_rows > 0) {
+            // Obtener la primera fila de la respuesta
+            $row = $result->fetch_assoc();
+            $Stored_id_user = strval($row['id_user']);
+
+            //desencriptar token
+            $mask = unMask($token);
+            $id_user = $mask['data'];
+
+            // Comparar el id de la bd con el token
+            if ($Stored_id_user === $id_user) {
+                return true;
+            } else {
+                echo httpMessage(401);
+                exit;
+            }
         } else {
-            return false;
+            echo httpMessage(401);
+            exit;
         }
     } else {
-        return false;
+        echo httpMessage(401);
+        exit;
     }
     
 }

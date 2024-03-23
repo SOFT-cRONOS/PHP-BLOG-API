@@ -1,6 +1,6 @@
 <?php
 // Funciones conexion
-require_once 'config.php';
+require_once './config.php';
 
 // Limitar el tamaño máximo permitido para 'query_type'
 $max_query_type_length = 20;
